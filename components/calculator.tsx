@@ -3,27 +3,31 @@ import { Button } from "./ui/button";
 import { useState } from "react";
 import { Card } from "./ui/card";
 import { evaluate } from "mathjs";
+import { ThemeSwitch } from "./ui/themeSwitch";
 
 const Calculator = () => {
   const [display, setDisplay] = useState<string>("0");
-  const [input, setInput] = useState<string>("");
 
   const handleButtonPress = (value: string) => {
     if (value === "C") {
-      setInput((prev) => prev.slice(0, -1));
-      setDisplay((prev) => prev.slice(0, -1));
+      setDisplay((prev) => {
+        prev.slice(0, -1);
+        if (prev.length === 1) {
+          return "0";
+        } else {
+          return prev.slice(0, -1);
+        }
+      });
       return;
     } else if (value === "AC") {
-      setInput("");
       setDisplay("0");
       return;
     }
-    
+
     if (value === "=") {
       handleCalculate();
       return;
     } else {
-      setInput((prev) => prev + value);
       setDisplay((prev) => {
         if (prev === "0") {
           return value;
@@ -35,11 +39,12 @@ const Calculator = () => {
   };
 
   const handleCalculate = () => {
-    setDisplay(evaluate(input).toString());
+    setDisplay(evaluate(display).toString());
   };
 
   return (
-    <Card className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md">
+    <Card className="rounded-lg shadow-lg p-6 w-full max-w-md">
+      <ThemeSwitch />
       <div className="flex flex-col items-end mb-4">
         <div className="text-gray-700 dark:text-gray-300 text-right text-4xl font-bold p-4 w-full">
           {display}
