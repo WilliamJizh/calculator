@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Calculator APP
+![image](https://github.com/WilliamJizh/calculator/assets/65744833/0c8d0a56-4973-436a-87f6-d2143dcee1a1)
+
+A calculator app was created with Next.js shadcn/ui
 
 ## Getting Started
 
