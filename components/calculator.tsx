@@ -29,7 +29,7 @@ const Calculator = () => {
       return;
     } else {
       setDisplay((prev) => {
-        if (prev === "0") {
+        if (prev === "0" || prev === "Error") {
           return value;
         } else {
           return prev + value;
@@ -39,7 +39,12 @@ const Calculator = () => {
   };
 
   const handleCalculate = () => {
-    setDisplay(evaluate(display).toString());
+    try {
+      setDisplay(evaluate(display).toString());
+    }
+    catch (error) {
+      setDisplay("Error");
+    }
   };
 
   return (
